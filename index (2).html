@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>성찬용 | 생성형 AI 활용 강사</title>
+<meta name="description" content="연구소와 경영 현장 34년, 공공기관과 기업에 생성형 AI 활용을 가르치는 성찬용의 프로필">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --space: #070B1F;
+    --space-deep: #03051A;
+    --nebula: #2A1F5C;
+    --star: #F4F6FF;
+    --text: #DDE1F5;
+    --muted: #9AA2CC;
+    --line: rgba(154, 162, 204, 0.22);
+    --r1: #FF5B6E; --r2: #FFA24D; --r3: #FFE066;
+    --r4: #5BE38A; --r5: #4DB8FF; --r6: #9A7BFF;
+    --display: "Black Han Sans", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --body: "Gowun Batang", "AppleMyungjo", "Batang", serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: radial-gradient(ellipse at 70% 20%, var(--nebula) 0%, var(--space) 45%, var(--space-deep) 100%) fixed;
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    min-height: 100vh;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  #stars { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  main { position: relative; z-index: 1; }
+
+  /* 첫 화면 */
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 2rem 1.25rem;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(4.5rem, 19vw, 13rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--star);
+    text-shadow:
+      0.03em 0.03em 0 var(--r1),
+      0.06em 0.06em 0 var(--r2),
+      0.09em 0.09em 0 var(--r3),
+      0.12em 0.12em 0 var(--r4),
+      0.15em 0.15em 0 var(--r5),
+      0.18em 0.18em 0 var(--r6);
+    animation: unfold 1.6s cubic-bezier(.2,.8,.2,1) both;
+    margin-right: 0.18em;
+  }
+  @keyframes unfold {
+    from { text-shadow: 0 0 0 var(--r1), 0 0 0 var(--r2), 0 0 0 var(--r3), 0 0 0 var(--r4), 0 0 0 var(--r5), 0 0 0 var(--r6); }
+  }
+  .hero p {
+    margin-top: 2.2rem;
+    font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+    color: var(--muted);
+    animation: appear 1s ease 1.2s both;
+  }
+  @keyframes appear { from { opacity: 0; } }
+  .scroll-hint {
+    display: inline-block;
+    margin-top: 3.5rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.2rem;
+    animation: appear 1s ease 1.6s both;
+  }
+  .scroll-hint:hover { color: var(--star); border-color: var(--star); }
+
+  /* 프로필 */
+  .profile {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 7rem;
+  }
+  .profile h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    color: var(--star);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+  .lead {
+    font-size: clamp(1.2rem, 2.8vw, 1.45rem);
+    line-height: 1.75;
+    color: var(--star);
+    margin-bottom: 4rem;
+  }
+  .block { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+  .block h3 {
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--star);
+    margin-bottom: 1.1rem;
+  }
+  .roles { list-style: none; }
+  .roles li { padding: 0.35rem 0; font-size: 1.15rem; }
+  .roles li:first-child { font-weight: 700; color: var(--star); }
+  .fields { list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .fields li {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.3rem 0.95rem;
+    font-size: 0.98rem;
+    background: rgba(7, 11, 31, 0.55);
+  }
+  .block p { color: var(--text); }
+  .block p + p { margin-top: 0.9rem; }
+  .block .note { color: var(--muted); font-size: 0.95rem; }
+
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 2.5rem 1rem 3rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  a:focus-visible { outline: 2px solid var(--r5); outline-offset: 4px; border-radius: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero h1, .hero p, .scroll-hint { animation: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<main>
+  <section class="hero">
+    <div>
+      <h1>성찬용</h1>
+      <p>생성형 AI를 일과 삶의 도구로 가르칩니다</p>
+      <a class="scroll-hint" href="#profile">프로필 보기</a>
+    </div>
+  </section>
+
+  <section class="profile" id="profile">
+    <h2>프로필</h2>
+    <p class="lead">연구소와 경영 현장에서 34년간 쌓은 경험을 바탕으로, 공공기관과 기업에 생성형 AI 활용 교육을 하고 천안시의 AI 교육과 정책 자문을 맡고 있습니다.</p>
+
+    <div class="block">
+      <h3>현재 하는 일</h3>
+      <ul class="roles">
+        <li>남다름AI 부사장</li>
+        <li>천안시 AI 책임교수</li>
+        <li>천안시 AI 정책특보</li>
+        <li>충남 AI 정책 자문위원</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h3>강의 분야</h3>
+      <ul class="fields">
+        <li>생성형 AI 개념과 활용</li>
+        <li>업무 생산성과 자동화</li>
+        <li>디지털 리터러시</li>
+        <li>AI 마케팅</li>
+        <li>데이터 분석과 시각화</li>
+        <li>AI 영상·이미지·음악 제작</li>
+        <li>AI 콘텐츠와 스토리텔링</li>
+        <li>AI 활용 창업과 브랜딩</li>
+        <li>개인 지식관리(PKM)와 RAG</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h3>걸어온 길</h3>
+      <p>대한제당 중앙연구소와 이지바이오 생물연구소에서 연구자로 일했고, 대상 식품안전센터 센터장, SPC그룹 자회사 B&amp;S 대표이사, 챈스스쿨 대표이사를 지냈습니다.</p>
+      <p>지금은 그 현장 경험을 AI 교육으로 잇고 있습니다. 교육과 치유, 창작이 만나는 AI 활용을 중요한 방향으로 삼고 있습니다.</p>
+    </div>
+
+    <div class="block">
+      <h3>함께한 기관</h3>
+      <p>식품의약품안전처, 충남인재개발원, 한국생산성본부, 한국콘텐츠진흥원, 한국수자원공사, 한국철도공사, 서울시청, 경기도청, 천안시청, 서울대, 충남대, 단국대 등 공공기관과 대학, 그리고 SK, 롯데, 한화, HD현대, 신세계, 기아, 아모레퍼시픽, NH투자증권 등 기업에서 강의했습니다.</p>
+      <p class="note">공공기관·대학 30여 곳, 기업 40여 곳</p>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 성찬용</footer>
+
+<script>
+(() => {
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let stars = [], w, h, dpr;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.round((w * h) / 2600);
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() < 0.08 ? Math.random() * 1.4 + 1 : Math.random() * 0.9 + 0.2,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 1.6 + 0.4,
+      hue: Math.random() < 0.15 ? (Math.random() < 0.5 ? 210 : 45) : null
+    }));
+    if (reduce) draw(0);
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    const time = t / 1000;
+    for (const s of stars) {
+      const a = reduce ? 0.8 : 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(time * s.speed + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.hue === null
+        ? `rgba(244,246,255,${a})`
+        : `hsla(${s.hue},90%,80%,${a})`;
+      ctx.fill();
+      if (s.r > 1) {
+        ctx.fillStyle = `rgba(244,246,255,${a * 0.12})`;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r * 3.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  if (!reduce) requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
