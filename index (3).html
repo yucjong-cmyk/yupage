@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>성찬용 | 생성형 AI 강사</title>
+<meta name="description" content="연구소와 경영 현장 34년, 공공기관·기업에 생성형 AI 활용 교육을 하는 성찬용입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* 성찬용 개인 웹사이트 스타일 */
+:root {
+  --ink: #120e33;
+  --ink-2: #1c1747;
+  --paper: #f3f1ff;
+  --muted: #b7b2dc;
+  --magenta: #ff4fa3;
+  --cyan: #3fe0d0;
+  --amber: #ffc24b;
+  --display: "Black Han Sans", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; border-radius: 2px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #3a1d6e, var(--ink) 70%);
+  cursor: grab;
+}
+.hero:active { cursor: grabbing; }
+#shader { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(18,14,51,0) 45%, rgba(18,14,51,.85) 88%, var(--ink));
+  pointer-events: none;
+}
+.hero-text {
+  position: absolute;
+  left: clamp(1.25rem, 6vw, 5rem);
+  right: 1.25rem;
+  bottom: clamp(3.5rem, 12vh, 7rem);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(4.5rem, 17vw, 12rem);
+  line-height: .9;
+  letter-spacing: -.02em;
+  text-shadow: 0 0 40px rgba(18,14,51,.9), 0 4px 0 rgba(18,14,51,.6);
+}
+.hero p {
+  margin-top: 1.25rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  font-weight: 400;
+  max-width: 30em;
+  text-shadow: 0 0 18px rgba(18,14,51,1);
+}
+.hero nav {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 1.25rem);
+  right: clamp(1.25rem, 6vw, 5rem);
+  z-index: 2;
+  display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: flex-end;
+  font-size: .95rem; font-weight: 400;
+}
+.hero nav a { text-decoration: none; text-shadow: 0 0 12px rgba(18,14,51,1); }
+.hero nav a:hover { color: var(--cyan); }
+.hint {
+  position: absolute; right: clamp(1.25rem, 6vw, 5rem); bottom: 1.5rem; z-index: 1;
+  font-size: .8rem; color: var(--muted);
+}
+
+/* ---------- Sections ---------- */
+main { padding-bottom: env(safe-area-inset-bottom, 0px); }
+section {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 7.5rem) clamp(1.25rem, 6vw, 5rem) 0;
+}
+h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .75rem; }
+
+.intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; }
+.lead { font-size: clamp(1.2rem, 2.4vw, 1.5rem); line-height: 1.6; font-weight: 400; max-width: 26em; }
+.lead + p { margin-top: 1.25rem; color: var(--muted); max-width: 34em; }
+.roles { list-style: none; border-left: 3px solid var(--magenta); padding-left: 1.25rem; }
+.roles li { padding: .35rem 0; font-weight: 400; }
+.past { margin-top: 2rem; color: var(--muted); font-size: .95rem; }
+.past ul { list-style: none; }
+.past li { padding: .15rem 0; }
+
+.topics { display: flex; flex-wrap: wrap; gap: .6rem .6rem; list-style: none; }
+.topics li {
+  padding: .45rem 1rem;
+  border: 1px solid rgba(63,224,208,.45);
+  border-radius: 999px;
+  font-size: .98rem;
+  font-weight: 400;
+}
+
+.orgs { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3.5rem; }
+.orgs p { color: var(--muted); font-size: .95rem; line-height: 1.95; }
+.orgs h3 span { color: var(--amber); font-weight: 400; margin-left: .4rem; }
+
+.projects { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid rgba(183,178,220,.25); }
+.projects li {
+  padding: 1.75rem 1.5rem 1.75rem 0;
+  border-bottom: 1px solid rgba(183,178,220,.25);
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  font-weight: 400;
+  line-height: 1.45;
+}
+.projects li small { display: block; margin-top: .35rem; font-size: .9rem; color: var(--muted); font-weight: 300; }
+
+.contact { padding-bottom: clamp(4rem, 10vw, 7rem); }
+.contact p { color: var(--muted); max-width: 32em; }
+.mail {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 5.5vw, 3.25rem);
+  text-decoration: none;
+  background: linear-gradient(90deg, var(--magenta), var(--amber), var(--cyan));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  overflow-wrap: anywhere;
+}
+.mail:hover { filter: brightness(1.15); }
+footer {
+  max-width: 62rem; margin: 0 auto;
+  padding: 2rem clamp(1.25rem, 6vw, 5rem) calc(2rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(183,178,220,.2);
+  font-size: .85rem; color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .intro, .orgs { grid-template-columns: 1fr; gap: 2rem; }
+  .projects { grid-template-columns: 1fr; }
+  .hero nav { left: 1.25rem; justify-content: flex-start; gap: 1rem; font-size: .9rem; }
+  .hint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <canvas id="shader" aria-hidden="true"></canvas>
+  <nav aria-label="페이지 메뉴">
+    <a href="#about">소개</a>
+    <a href="#lectures">강의·출강</a>
+    <a href="#projects">프로젝트</a>
+    <a href="#contact">강의 문의</a>
+  </nav>
+  <div class="hero-text">
+    <h1>성찬용</h1>
+    <p>연구소와 경영 현장 34년, 이제는 생성형 AI를 가르칩니다.</p>
+  </div>
+  <span class="hint">화면을 끌어서 무늬를 움직여 보세요</span>
+</header>
+
+<main>
+  <section id="about" class="intro">
+    <div>
+      <h2>소개</h2>
+      <p class="lead">공공기관과 기업에서 생성형 AI를 실제 업무에 쓰는 법을 가르치고, 천안시의 AI 교육과 정책 자문을 맡고 있습니다.</p>
+      <p>서울대학교에서 생명공학을 공부한 뒤 식품·바이오 연구소와 기업 경영 현장에서 34년을 보냈습니다. 그 경험을 바탕으로 AI를 교육·치유·창작과 잇는 일, 그리고 누구나 자기 지식을 쌓고 꺼내 쓰는 개인 지식관리에 집중하고 있습니다.</p>
+    </div>
+    <div>
+      <h3>현재</h3>
+      <ul class="roles">
+        <li>주식회사 SKY AI 부사장</li>
+        <li>천안시 AI 책임교수</li>
+        <li>천안시 AI 정책특보</li>
+        <li>충남 AI 정책 자문위원</li>
+      </ul>
+      <div class="past">
+        <h3>지나온 자리</h3>
+        <ul>
+          <li>대상 식품안전센터 센터장</li>
+          <li>SPC그룹 자회사 B&amp;S 대표이사</li>
+          <li>이지바이오 생물연구소 책임연구원·Biosafety 사업본부장</li>
+          <li>대한제당 중앙연구소 선임연구원</li>
+          <li>챈스스쿨 대표이사</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="lectures">
+    <h2>강의 분야</h2>
+    <ul class="topics">
+      <li>생성형 AI 개념과 활용</li>
+      <li>디지털 리터러시</li>
+      <li>업무 생산성·자동화</li>
+      <li>AI 마케팅</li>
+      <li>데이터 분석·시각화</li>
+      <li>AI 영상·이미지·음악 제작</li>
+      <li>AI와 디지털 아트</li>
+      <li>AI 콘텐츠·스토리텔링</li>
+      <li>AI 활용 창업·사업계획·브랜딩</li>
+      <li>NotebookLM·Obsidian·RAG</li>
+      <li>개인 지식관리(세컨드 브레인)</li>
+    </ul>
+
+    <div class="orgs">
+      <div>
+        <h3>공공기관·대학<span>출강</span></h3>
+        <p>식품의약품안전처, 충남인재개발원, 한국산업기술진흥원, 한국생산성본부, 한국콘텐츠진흥원, 한국농수산식품유통공사, 한국환경공단, 한국에너지공단, 한국교통안전공단, 한국철도공사, 한국수자원공사, 한국공항공사, 한수원, 남부·중부·서부·동서발전, 한국전력기술, 한국가스기술공사, 서울시청, 경기도청, 인천시청, 천안시청, 서산시청, 울산시청, 경남도청, 전라북도, 부산·서울 교육청, 성남도시개발공사, 한국체육산업개발, 충남 청년센터, 서울대, 충남대, 단국대, 한국기술교육대, 백석대</p>
+      </div>
+      <div>
+        <h3>기업<span>출강</span></h3>
+        <p>SK, 롯데, 한화, HD현대, 현대백화점그룹, 신세계, 기아, 아모레퍼시픽, 애경, 한진, NH투자증권, 현대캐피탈, 한화생명금융서비스, 롯데정밀화학, 한미글로벌, 현대엘리베이터, JW그룹, 한국콜마, 한솔케미칼, 한솔제지, KCC, 현대위디아, 일진, 영림, 테크윙, 메가젠임플란트, 스태츠칩팩코리아 외 다수</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>2026 주요 프로젝트</h2>
+    <ul class="projects">
+      <li>AX 대전환<small>과학기술정보통신부</small></li>
+      <li>천안·아산 특화도시</li>
+      <li>천안 시민 AI 교육 프로젝트</li>
+      <li>천안시장 시정활동 지식그래프</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>강의 문의</h2>
+    <p>기관·기업 맞춤 교육, 특강, 워크숍, AI 도입 자문을 받습니다. 교육 대상과 인원, 원하는 날짜를 적어 메일을 보내 주세요.</p>
+    <a class="mail" href="mailto:cdragon0227@gmail.com?subject=%EA%B0%95%EC%9D%98%20%EB%AC%B8%EC%9D%98">cdragon0227@gmail.com</a>
+  </section>
+</main>
+
+<footer>© 2026 성찬용 · 천안</footer>
+
+<script>
+// 첫 화면 WebGL 셰이더 배경 (네온 육각 만화경)
+(() => {
+  const canvas = document.getElementById('shader');
+  const hero = document.querySelector('.hero');
+  const gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false });
+  if (!gl) return; // CSS 그라데이션 배경이 대신 보입니다
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const vert = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
+  const frag = `
+  precision highp float;
+  uniform vec2 R;
+  uniform float T;
+  uniform vec2 M;
+  #define PI 3.14159265
+  #define TAU 6.28318531
+
+  float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+  vec3 pal(float t){ return 0.5 + 0.5 * cos(TAU * (t + vec3(0.0, 0.33, 0.67))); }
+
+  // 육각형 격자: xy = 칸 안 좌표, zw = 칸 id
+  vec4 hexCell(vec2 uv){
+    vec2 r = vec2(1.0, 1.7320508);
+    vec2 h = r * 0.5;
+    vec2 a = mod(uv, r) - h;
+    vec2 b = mod(uv - h, r) - h;
+    vec2 gv = dot(a, a) < dot(b, b) ? a : b;
+    return vec4(gv, uv - gv);
+  }
+
+  // 육각 트루쳇: 번갈아 있는 세 꼭짓점을 중심으로 한 호
+  float truchet(vec2 gv, vec2 id){
+    float flip = hash(id) > 0.5 ? 1.0 : 0.0;
+    float d = 1e9;
+    for (int k = 0; k < 3; k++){
+      float ang = PI / 6.0 + (float(k) * 2.0 + flip) * PI / 3.0;
+      vec2 v = vec2(cos(ang), sin(ang)) * 0.57735;
+      d = min(d, abs(length(gv - v) - 0.288675));
+    }
+    return d;
+  }
+
+  void main(){
+    vec2 p = (gl_FragCoord.xy - 0.5 * R) / R.y;
+    p -= M * 0.35;                      // 끌기로 중심 이동
+    float r = length(p);
+    float a = atan(p.y, p.x);
+
+    // 로그-극좌표로 감아 만화경처럼 회전하며 빨려 들어가는 무늬
+    float N = 9.0;
+    vec2 uv = vec2(a / TAU * N + T * 0.03, log(r) * N / TAU * 1.732 - T * 0.25);
+
+    vec4 c = hexCell(uv);
+    vec2 id = vec2(mod(floor(c.z * 2.0 + 0.5), N * 2.0), floor(c.w * 2.0 + 0.5));
+    float d = truchet(c.xy, id);
+
+    float w = 0.04;
+    float line = smoothstep(w, w * 0.4, d);
+    float glow = 0.012 / (d + 0.01);
+
+    float hue = hash(id) * 0.6 + c.w * 0.05 + T * 0.04;
+    vec3 col = pal(hue) * (line * 1.1 + glow * 0.35);
+
+    // 칸 안쪽 은은한 면
+    col += pal(hue + 0.5) * 0.06 * (1.0 - smoothstep(0.0, 0.5, length(c.xy)));
+
+    // 중심은 어둡게, 가장자리로 갈수록 서서히
+    col *= smoothstep(0.02, 0.35, r);
+    col *= 1.0 - smoothstep(0.7, 1.4, r) * 0.6;
+
+    vec3 base = vec3(0.07, 0.055, 0.2);
+    col = base + col;
+    gl_FragColor = vec4(pow(col, vec3(0.95)), 1.0);
+  }`;
+
+  function compile(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.error(gl.getShaderInfoLog(s)); return null; }
+    return s;
+  }
+  const vs = compile(gl.VERTEX_SHADER, vert);
+  const fs = compile(gl.FRAGMENT_SHADER, frag);
+  if (!vs || !fs) return;
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, 'p');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uR = gl.getUniformLocation(prog, 'R');
+  const uT = gl.getUniformLocation(prog, 'T');
+  const uM = gl.getUniformLocation(prog, 'M');
+
+  // 끌기 상태 (부드럽게 따라가도록 target/current 분리)
+  const target = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+  let dragging = false, last = null;
+
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = Math.floor(canvas.clientWidth * dpr);
+    canvas.height = Math.floor(canvas.clientHeight * dpr);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (reduce) render(20000);
+  }
+
+  function render(ms){
+    cur.x += (target.x - cur.x) * 0.08;
+    cur.y += (target.y - cur.y) * 0.08;
+    gl.uniform2f(uR, canvas.width, canvas.height);
+    gl.uniform1f(uT, ms / 1000);
+    gl.uniform2f(uM, cur.x, cur.y);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  }
+
+  let visible = true;
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(hero);
+
+  function loop(ms){
+    if (visible) render(ms);
+    requestAnimationFrame(loop);
+  }
+
+  hero.addEventListener('pointerdown', e => { dragging = true; last = { x: e.clientX, y: e.clientY }; });
+  window.addEventListener('pointerup', () => { dragging = false; });
+  window.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const h = canvas.clientHeight;
+    target.x = Math.max(-1, Math.min(1, target.x + (e.clientX - last.x) / h * 2));
+    target.y = Math.max(-1, Math.min(1, target.y - (e.clientY - last.y) / h * 2));
+    last = { x: e.clientX, y: e.clientY };
+    if (reduce) render(20000);
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  if (!reduce) requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
